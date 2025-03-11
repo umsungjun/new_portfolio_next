@@ -8,9 +8,20 @@ export default {
   ],
   theme: {
     extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+      screens: {
+        web: "1055px",
+      },
+      backgroundSize: {
+        "200%": "200% 100%",
+      },
+      keyframes: {
+        gradientAnimation: {
+          "0%": { backgroundPosition: "0% 50%" },
+          "100%": { backgroundPosition: "100% 50%" },
+        },
+      },
+      animation: {
+        gradientAnimation: "gradientAnimation 15s ease infinite",
       },
     },
   },

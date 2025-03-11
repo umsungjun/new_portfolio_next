@@ -2,20 +2,251 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@font-face {
+  font-family: "TAEBAEKmilkyway";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/TAEBAEKmilkyway.woff2")
+    format("woff2");
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+* {
+  font-family: "Pretendard-Regular" !important;
+}
+
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes hide {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    display: none;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+/* 질문 CSS */
+.questionWrapper {
+  @apply w-11/12 flex flex-col gap-3 web:w-4/5;
+  animation: slideDown 0.85s ease-in-out forwards;
+}
+.questionMark {
+  @apply w-8 h-8 flex items-center justify-center rounded-full bg-blue-500 text-white font-black;
+}
+.questionWrapper p {
+  @apply w-fit bg-white p-5 rounded-2xl rounded-bl-none shadow-sm leading-6;
+}
+.questionButtonBox {
+  @apply p-5 bg-white rounded-2xl rounded-bl-none flex flex-col gap-3;
+  animation: slideDown 0.85s ease-in-out forwards;
+}
+.questionButtonBox span {
+  @apply leading-6;
+}
+.questionButtonBox button {
+  @apply h-12 border border-solid border-gray-400 rounded-xl shadow-sm hover:shadow-md transition-all ease-in-out;
+}
+
+.answerLoader {
+  @apply w-fit max-w-64 web:max-w-80 bg-blue-200 ml-auto p-5 rounded-2xl rounded-br-none shadow-sm flex flex-col gap-3;
+  animation: slideDown 0.85s ease-in-out forwards;
+}
+
+/* 답변 CSS */
+.answer {
+  @apply w-fit max-w-64 web:max-w-80 bg-blue-200 ml-auto p-5 rounded-2xl rounded-br-none shadow-sm flex flex-col gap-3;
+  animation: slideUp 0.85s ease-in-out forwards;
+}
+.answer p {
+  @apply w-full break-words leading-6;
+}
+.answer .question {
+  @apply font-black text-black;
+}
+.answer img {
+  @apply rounded-lg;
+}
+.answer .videoPlayer {
+  @apply rounded-lg overflow-hidden;
+}
+/* 기술 스택 */
+.answer .frontStackBox {
+  @apply block mt-1.5;
+}
+
+/* 말풍선 안내 */
+.bubbleGuide {
+  @apply absolute top-[3.75rem] right-1 bg-white z-10 px-3 py-1 rounded-2xl shadow-md border border-solid border-gray-400 flex items-center gap-1 !text-black;
+  animation: hide 5s ease-in forwards;
+}
+.bubbleGuide::before {
+  border-top: 0px solid transparent;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 15px solid black;
+  content: "";
+  position: absolute;
+  top: -0.9rem;
+  right: 2rem;
+}
+.bubbleGuide::after {
+  border-top: 0.1px solid transparent;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 15px solid #fff;
+  content: "";
+  position: absolute;
+  top: -0.9rem;
+  right: 2rem;
 }
