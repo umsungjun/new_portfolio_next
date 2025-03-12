@@ -1,4 +1,16 @@
 {
-    "title": "홈",
-    "description": "홈 페이지에 오신 것을 환영합니다."
+  "portfolioTitle": "엄성준 포트폴리오",
+  "introduce1": "꾸준함이 강점이자 자랑인",
+  "introduce2": "프론트엔드 개발자 엄성준입니다.",
+  "contact": "연락하기",
+  "phone": "핸드폰",
+  "mail": "메일",
+  "gitHub": "깃허브",
+  "blog": "블로그",
+  "imgTouch": "(이미지를 터치하면 확대됩니다.)",
+  "chatHello": "방문해주셔서 감사합니다.",
+  "chatSelectQuestion": "원하는 질문 카테고리를 선택해 주세요!",
+  "gitAndBlog": "깃허브 & 블로그",
+  "visitGit": "깃허브 방분하기",
+  "visitBlog": "블로그 방문하기"
 }

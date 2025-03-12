@@ -1,4 +1,16 @@
 {
-    "title": "Home",
-    "description": "Welcome to the home page."
+  "portfolioTitle": "Sungjun Portfolio",
+  "introduce1": "Consistency is my strength and pride",
+  "introduce2": "I am a frontend developer.",
+  "contact": "Contact",
+  "phone": "Phone",
+  "mail": "Mail",
+  "gitHub": "GitHub",
+  "blog": "Blog",
+  "imgTouch": "(Touch the image to enlarge.)",
+  "chatHello": "Thank you for visiting.",
+  "chatSelectQuestion": "Select your desired question category!",
+  "gitAndBlog": "GitHub & Blog",
+  "visitGit": "Visit GitHub",
+  "visitBlog": "Visit Blog"
 }
