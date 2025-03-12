@@ -70,7 +70,7 @@ async function loadSpreadSheet() {
           if (error) {
             throw error;
           }
-          console.log(`${language} 파일이 저장되었습니다.`);
+          console.log(`${language} 다국어 파일 내려받기 성공`);
         });
       });
   });
