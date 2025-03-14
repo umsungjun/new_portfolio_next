@@ -10,6 +10,7 @@
     "download:i18n": "node i18n/loadSpreadSheet.js"
   },
   "dependencies": {
+    "@heroicons/react": "^2.2.0",
     "google-auth-library": "^9.15.1",
     "google-spreadsheet": "^4.1.4",
     "next": "15.1.4",
