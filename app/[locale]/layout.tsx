@@ -1,4 +1,4 @@
-import "../../globals.css";
+import "../globals.css";
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
@@ -35,7 +35,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale}>
-      <body className={`flex justify-center gap-32 overflow-hidden `}>
+      <body>
         <NextIntlClientProvider locale={locale} messages={messages}>
           {children}
         </NextIntlClientProvider>
