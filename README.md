@@ -23,3 +23,14 @@ Remove : 코드(파일) 삭제가 있을 때
 
 관련 공식 문서: [Next.js Hydration Error] (https://nextjs.org/docs/messages/react-hydration-error)
 ```
+
+### 2. next-intl getTranslations 작동 안함 문제
+
+```
+export default async function Side({ params }: SideProps) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale });
+}
+- getTranslations는 서버 컴포넌트에서 호출되며, locale 정보를 명시적으로 전달해야 합니다.
+- params 객체에서 locale 값을 추출하지 않거나, 잘못된 값을 전달하면 번역 메시지를 로드할 수 없습니다.
+```
