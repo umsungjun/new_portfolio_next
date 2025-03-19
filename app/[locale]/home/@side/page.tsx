@@ -1,14 +1,19 @@
-"use client";
-
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
 /* 아이콘 */
 import { DevicePhoneMobileIcon } from "@heroicons/react/24/outline";
 import { EnvelopeIcon } from "@heroicons/react/24/outline";
 import ProfileSwiper from "./profileSwiper";
 
-export default function Side() {
-  const t = useTranslations();
+interface SideProps {
+  params: {
+    locale: string;
+  };
+}
+
+export default async function Side({ params }: SideProps) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale });
 
   return (
     <aside className="hidden max-w-[450px] w-[450px] h-screen items-center web:flex">
