@@ -1,6 +1,8 @@
 node_modules
 .next/
 .env
+*.db
+*.sql
 
 # Google console 계정 정보
 i18n/credentials.js
