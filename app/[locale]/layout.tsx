@@ -2,7 +2,7 @@ import "../globals.css";
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
-import { localeType } from "@/lib/type";
+import { localeType } from "@/lib/client/type";
 
 interface LocaleLayoutParams {
   locale: localeType;

@@ -1,7 +1,11 @@
 import createMiddleware from "next-intl/middleware";
 import { routing } from "./i18n/routing";
 import { NextRequest, NextResponse } from "next/server";
-import { LOCALE_EN, LOCALE_KO, SUPPORTED_LOCALES } from "./lib/constants";
+import {
+  LOCALE_EN,
+  LOCALE_KO,
+  SUPPORTED_LOCALES,
+} from "./lib/client/constants";
 
 export default createMiddleware(routing);
 

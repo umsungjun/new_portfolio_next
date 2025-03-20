@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { localeType } from "@/lib/type";
+import { localeType } from "@/lib/client/type";
 import ProfileSwiper from "./profileSwiper";
 
 /* 아이콘 */

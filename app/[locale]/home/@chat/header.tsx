@@ -3,7 +3,7 @@
 import { useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
-import { LOCALE_EN, LOCALE_KO } from "@/lib/constants";
+import { LOCALE_EN, LOCALE_KO } from "@/lib/client/constants";
 
 /* 아이콘 */
 import { MoonIcon } from "@heroicons/react/24/solid";

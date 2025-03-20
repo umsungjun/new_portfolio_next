@@ -1,6 +1,6 @@
 import { defineRouting } from "next-intl/routing";
 import { createNavigation } from "next-intl/navigation";
-import { LOCALE_KO, SUPPORTED_LOCALES } from "@/lib/constants";
+import { LOCALE_KO, SUPPORTED_LOCALES } from "@/lib/client/constants";
 
 export const routing = defineRouting({
   /* 지원하는 언어 설정 */
