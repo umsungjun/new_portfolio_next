@@ -1,13 +1,14 @@
 import { getTranslations } from "next-intl/server";
+import { localeType } from "@/lib/type";
+import ProfileSwiper from "./profileSwiper";
 
 /* 아이콘 */
 import { DevicePhoneMobileIcon } from "@heroicons/react/24/outline";
 import { EnvelopeIcon } from "@heroicons/react/24/outline";
-import ProfileSwiper from "./profileSwiper";
 
 interface SideProps {
   params: {
-    locale: string;
+    locale: localeType;
   };
 }
 
