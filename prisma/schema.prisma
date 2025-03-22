@@ -8,16 +8,21 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
+enum Type {
+  QUESTION
+  ANSWER
+}
+
 model Question {
-  id        Int      @id @default(autoincrement())
-  content   String
-  createdAt DateTime @default(now())
-  answers   Answer[]
+  id      Int      @id @default(autoincrement())
+  type    Type     @default(QUESTION) // 고정값으로 'QUESTION' 설정
+  content String
+  answers Answer[]
 }
 
 model Answer {
   id         Int      @id @default(autoincrement())
-  createdAt  DateTime @default(now())
+  type       Type     @default(ANSWER) // 고정값으로 'ANSWER' 설정
   contentKo  String
   contentEn  String
   mediaUrl   String?
