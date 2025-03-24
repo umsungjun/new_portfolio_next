@@ -14,10 +14,11 @@ enum Type {
 }
 
 model Question {
-  id      Int      @id @default(autoincrement())
-  type    Type     @default(QUESTION) // 고정값으로 'QUESTION' 설정
-  content String
-  answers Answer[]
+  id        Int      @id @default(autoincrement())
+  type      Type     @default(QUESTION) // 고정값으로 'QUESTION' 설정
+  contentKo String
+  contentEn String
+  answers   Answer[]
 }
 
 model Answer {
