@@ -13,8 +13,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const data = await prisma.answer.findUnique({
-      where: { id: Number(id) },
+    const data = await prisma.answer.findMany({
+      where: { questionId: Number(id) },
     });
 
     return NextResponse.json({ success: true, data });
