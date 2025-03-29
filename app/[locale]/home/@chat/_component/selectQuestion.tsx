@@ -1,3 +1,4 @@
+import { useState } from "react";
 import useSWR from "swr";
 import { useLocale, useTranslations } from "next-intl";
 import { Answer, Question } from "@prisma/client";
@@ -22,6 +23,9 @@ export default function SelectQuestion({
   const t = useTranslations();
   const { setChatHistory } = useChatStore();
 
+  /* 답변 추가 중 상태 */
+  const [isAnswering, setIsAnswering] = useState(false);
+
   const { data, isLoading, error } = useSWR<QuestionResponse>("/api/question");
 
   /* ToDo 에러 처리 */
@@ -30,6 +34,7 @@ export default function SelectQuestion({
   }
 
   const getAnswer = async (question: Question) => {
+    setIsAnswering(true);
     const response = await fetch(`/api/answer`, {
       method: "POST",
       body: JSON.stringify({ id: question.id }),
@@ -45,6 +50,8 @@ export default function SelectQuestion({
       data.data.forEach((answer: Answer) => {
         setChatHistory(answer);
       });
+
+      setIsAnswering(false);
     }
   };
 
@@ -66,7 +73,11 @@ export default function SelectQuestion({
           <>
             {filteredQuestions.map((question) => {
               return (
-                <button key={question.id} onClick={() => getAnswer(question)}>
+                <button
+                  key={question.id}
+                  onClick={() => getAnswer(question)}
+                  disabled={isAnswering}
+                >
                   {locale === LOCALE_KO
                     ? question.contentKo
                     : question.contentEn}
