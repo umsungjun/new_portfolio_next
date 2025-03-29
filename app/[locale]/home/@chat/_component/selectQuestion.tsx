@@ -3,7 +3,6 @@ import { useLocale, useTranslations } from "next-intl";
 import { Answer, Question } from "@prisma/client";
 import { LOCALE_KO } from "@/lib/client/constants";
 import { useChatStore } from "@/store/useChatStore";
-import { useState } from "react";
 
 interface QuestionResponse {
   success: boolean;
@@ -23,9 +22,6 @@ export default function SelectQuestion({
   const t = useTranslations();
   const { setChatHistory } = useChatStore();
 
-  /* 질문 리스트 숨김 상태 */
-  const [isHidden, setIsHidden] = useState(false);
-
   const { data, isLoading, error } = useSWR<QuestionResponse>("/api/question");
 
   /* ToDo 에러 처리 */
@@ -34,7 +30,6 @@ export default function SelectQuestion({
   }
 
   const getAnswer = async (question: Question) => {
-    setIsHidden(true);
     const response = await fetch(`/api/answer`, {
       method: "POST",
       body: JSON.stringify({ id: question.id }),
@@ -50,17 +45,15 @@ export default function SelectQuestion({
       data.data.forEach((answer: Answer) => {
         setChatHistory(answer);
       });
-
-      setIsHidden(false);
     }
   };
 
-  // 질문 목록 필터링하여 렌더링
+  /* 이미 선택된 질문은 비노출 */
   const filteredQuestions = data.data.filter(
     (question) => !shownQuestionIds.includes(question.id)
   );
 
-  if (filteredQuestions.length === 0 || isHidden) return null;
+  if (filteredQuestions.length === 0) return null;
 
   return (
     <div className="questionWrapper">
@@ -72,10 +65,6 @@ export default function SelectQuestion({
         ) : (
           <>
             {filteredQuestions.map((question) => {
-              /* 이미 선택된 질문은 비노출 */
-              if (shownQuestionIds.includes(question.id)) {
-                return null;
-              }
               return (
                 <button key={question.id} onClick={() => getAnswer(question)}>
                   {locale === LOCALE_KO
