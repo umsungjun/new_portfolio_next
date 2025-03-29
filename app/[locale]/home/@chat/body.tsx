@@ -1,10 +1,13 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { useLocale } from "next-intl";
 import { useChatStore } from "@/store/useChatStore";
-import { LOCALE_KO } from "@/lib/client/constants";
+import { Answer as AnswerType, Question as QuestionType } from "@prisma/client";
+import { CHAT_TYPE_ANSWER, CHAT_TYPE_QUESTION } from "./_lib/constants";
 
 import Question from "./_component/question";
+import Answer from "./_component/answer";
 import SelectQuestion from "./_component/selectQuestion";
 
 export default function ChatBody() {
@@ -12,24 +15,50 @@ export default function ChatBody() {
   const locale = useLocale();
   const { chatHistory } = useChatStore();
 
+  /* 새로 고침 여부를 ref로 관리 */
+  const isRefresh = useRef(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      isRefresh.current = false;
+    }, 1000);
+  }, []);
+
+  const shownQuestionIds = chatHistory
+    .filter((chat) => chat.type === CHAT_TYPE_QUESTION)
+    .map((chat) => chat.id);
+
   return (
     <div
-      className={`relative h-full px-5 pt-6 pb-20 max-h-dvh flex flex-col gap-4`}
+      className={`relative h-full px-5 pt-6 pb-20 max-h-dvh flex flex-col gap-4 overflow-y-auto`}
     >
       {chatHistory.map((chat) => {
-        if (chat.type === "QUESTION") {
+        /* 질문 */
+        if (chat.type === CHAT_TYPE_QUESTION) {
           return (
             <Question
-              key={chat.id}
-              text={locale === LOCALE_KO ? chat.contentKo : chat.contentEn}
+              key={`QUESTION${chat.id}`}
+              locale={locale}
+              chat={chat as QuestionType}
               /* 999는 고정 인삿말 이기 때문에 마크를 비노출 */
               showMark={chat.id !== 999}
             />
           );
         }
+        /* 답변 */
+        if (chat.type === CHAT_TYPE_ANSWER) {
+          return (
+            <Answer
+              key={`ANSWER${chat.id}`}
+              isRefresh={isRefresh.current}
+              locale={locale}
+              chat={chat as AnswerType}
+            />
+          );
+        }
       })}
       {/* 질문 선택 리스트 */}
-      <SelectQuestion />
+      <SelectQuestion shownQuestionIds={shownQuestionIds} />
     </div>
   );
 }
