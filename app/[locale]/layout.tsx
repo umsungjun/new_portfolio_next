@@ -9,22 +9,24 @@ interface LocaleLayoutParams {
   locale: localeType;
 }
 
-export const metadata: Metadata = {
-  title: "프론트엔드 개발자 엄성준 포트폴리오",
-  description:
-    "꾸준함이 강점이자 자랑인 프론트엔드 개발자 엄성준 포트폴리오입니다.",
-  keywords: [
-    "프론트엔드 개발자",
-    "엄성준",
-    "포트폴리오",
-    "frontend developer",
-    "umsungjun",
-    "portfolio",
-  ],
-  icons: {
-    icon: "/favicon.ico",
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: "프론트엔드 개발자 엄성준 포트폴리오",
+    description:
+      "꾸준함이 강점이자 자랑인 프론트엔드 개발자 엄성준 포트폴리오입니다.",
+    keywords: [
+      "프론트엔드 개발자",
+      "엄성준",
+      "포트폴리오",
+      "frontend developer",
+      "umsungjun",
+      "portfolio",
+    ],
+    icons: {
+      icon: "/favicon.ico",
+    },
+  };
+}
 
 export default async function LocaleLayout({
   children,
