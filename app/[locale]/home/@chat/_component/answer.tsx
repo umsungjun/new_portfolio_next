@@ -48,13 +48,14 @@ export default function Answer({ isRefresh, locale, chat }: AnswerProps) {
           </p>
           {/* 참고 이미지 */}
           {chat.mediaType === IMAGE_TYPE && chat.mediaUrl !== null && (
-            <div>
+            <div className="">
               <span className="flex items-center gap-1 font-bold">
                 <PhotoIcon className="size-5 text-green-500" />
                 {t("referenceImage")}
               </span>
-              <div className="relative mt-3 flex h-[200px] w-full">
+              <div className="relative mt-3 flex h-[200px] w-full bg-blue-100 rounded-lg shadow-sm">
                 <Image
+                  className="object-contain p-1"
                   fill
                   src={`${process.env.NEXT_PUBLIC_GOOGLE_DRIVE_IMG_URL}${chat.mediaUrl}&sz=w300`}
                   priority={true}
