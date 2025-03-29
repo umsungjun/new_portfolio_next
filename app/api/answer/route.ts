@@ -15,6 +15,9 @@ export async function POST(request: NextRequest) {
 
     const data = await prisma.answer.findMany({
       where: { questionId: Number(id) },
+      orderBy: {
+        id: "asc",
+      },
     });
 
     return NextResponse.json({ success: true, data });
