@@ -205,7 +205,7 @@ table {
 
 /* 답변 CSS */
 .answer {
-  @apply w-fit max-w-64 web:max-w-80 bg-blue-200 ml-auto p-5 rounded-2xl rounded-br-none shadow-sm flex flex-col gap-3;
+  @apply w-fit max-w-80 bg-blue-200 ml-auto p-5 rounded-2xl rounded-br-none shadow-sm flex flex-col gap-3;
   animation: slideUp 0.85s ease-in-out forwards;
 }
 .answer p {
