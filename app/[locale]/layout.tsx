@@ -4,16 +4,27 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { localeType } from "@/lib/client/type";
 import { SwrProviders } from "@/components/swrProvider";
+import { LOCALE_KO } from "@/lib/client/constants";
 
 interface LocaleLayoutParams {
   locale: localeType;
 }
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: LocaleLayoutParams;
+}): Promise<Metadata> {
+  const { locale } = await params;
   return {
-    title: "프론트엔드 개발자 엄성준 포트폴리오",
+    title:
+      locale === LOCALE_KO
+        ? "프론트엔드 개발자 엄성준 포트폴리오"
+        : "Frontend Developer Sungjun Um Portfolio",
     description:
-      "꾸준함이 강점이자 자랑인 프론트엔드 개발자 엄성준 포트폴리오입니다.",
+      locale === LOCALE_KO
+        ? "꾸준함이 강점이자 자랑인 프론트엔드 개발자 엄성준 포트폴리오입니다."
+        : "This is the portfolio of Frontend Developer Sungjun Um, whose strength and pride is consistency.",
     keywords: [
       "프론트엔드 개발자",
       "엄성준",
