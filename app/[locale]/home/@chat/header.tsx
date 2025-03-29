@@ -6,7 +6,7 @@ import { Link } from "@/i18n/routing";
 import { LOCALE_EN, LOCALE_KO } from "@/lib/client/constants";
 
 /* 아이콘 */
-import { MoonIcon } from "@heroicons/react/24/solid";
+// import { MoonIcon } from "@heroicons/react/24/solid";
 import { GlobeAsiaAustraliaIcon } from "@heroicons/react/24/solid";
 
 export default function ChatHeader() {
@@ -17,10 +17,10 @@ export default function ChatHeader() {
 
   return (
     <header className="relative w-full h-14 bg-white  shadow-sm flex items-center justify-center text-lg">
-      {/* 다크모드 아이콘 */}
-      <button className="cursor-pointer absolute left-3">
+      {/* ToDo: 다크모드 구현, 다크모드 아이콘 */}
+      {/* <button className="cursor-pointer absolute left-3">
         <MoonIcon className="size-5" />
-      </button>
+      </button> */}
       {t("portfolioTitle")}
       {/* 언어 변경 */}
       <Link
