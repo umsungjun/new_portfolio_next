@@ -21,6 +21,9 @@ export const metadata: Metadata = {
     "umsungjun",
     "portfolio",
   ],
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default async function LocaleLayout({
