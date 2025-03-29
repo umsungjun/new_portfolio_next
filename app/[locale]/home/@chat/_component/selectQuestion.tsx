@@ -7,9 +7,16 @@ import { useChatStore } from "@/store/useChatStore";
 interface QuestionResponse {
   success: boolean;
   data: Question[];
+  shownQuestionIds: number[];
 }
 
-export default function SelectQuestion() {
+interface SelectQuestionProps {
+  shownQuestionIds: number[];
+}
+
+export default function SelectQuestion({
+  shownQuestionIds,
+}: SelectQuestionProps) {
   /* 현재 설정 된 언어 값 */
   const locale = useLocale();
   const t = useTranslations();
@@ -18,25 +25,35 @@ export default function SelectQuestion() {
   const { data, isLoading, error } = useSWR<QuestionResponse>("/api/question");
 
   /* ToDo 에러 처리 */
-  if (error) {
+  if (error || !data) {
     return null;
   }
 
-  const getAnswer = async (id: number) => {
+  const getAnswer = async (question: Question) => {
     const response = await fetch(`/api/answer`, {
       method: "POST",
-      body: JSON.stringify({ id }),
+      body: JSON.stringify({ id: question.id }),
       headers: { "Content-Type": "application/json" },
     });
 
     const data = await response.json();
 
     if (data.success) {
+      /* 질문 추가 */
+      setChatHistory(question);
+      /* 답변 추가 */
       data.data.forEach((answer: Answer) => {
         setChatHistory(answer);
       });
     }
   };
+
+  // 질문 목록 필터링하여 렌더링
+  const filteredQuestions = data.data.filter(
+    (question) => !shownQuestionIds.includes(question.id)
+  );
+
+  if (filteredQuestions.length === 0) return null;
 
   return (
     <div className="questionWrapper">
@@ -47,10 +64,16 @@ export default function SelectQuestion() {
           <></>
         ) : (
           <>
-            {data?.data.map((option) => {
+            {filteredQuestions.map((question) => {
+              /* 이미 선택된 질문은 비노출 */
+              if (shownQuestionIds.includes(question.id)) {
+                return null;
+              }
               return (
-                <button key={option.id} onClick={() => getAnswer(option.id)}>
-                  {locale === LOCALE_KO ? option.contentKo : option.contentEn}
+                <button key={question.id} onClick={() => getAnswer(question)}>
+                  {locale === LOCALE_KO
+                    ? question.contentKo
+                    : question.contentEn}
                 </button>
               );
             })}
