@@ -19,12 +19,12 @@ export async function generateMetadata({
   return {
     title:
       locale === LOCALE_KO
-        ? "프론트엔드 개발자 엄성준 포트폴리오"
-        : "Frontend Developer Sungjun Um Portfolio",
+        ? "프론트엔드 개발자 엄성준 Next 포트폴리오"
+        : "Frontend Developer Sungjun Um Next Portfolio",
     description:
       locale === LOCALE_KO
-        ? "꾸준함이 강점이자 자랑인 프론트엔드 개발자 엄성준 포트폴리오입니다."
-        : "This is the portfolio of Frontend Developer Sungjun Um, whose strength and pride is consistency.",
+        ? "꾸준함이 강점이자 자랑인 프론트엔드 개발자 엄성준 Next 포트폴리오입니다."
+        : "This is the Next portfolio of Frontend Developer Sungjun Um, whose strength and pride is consistency.",
     keywords: [
       "프론트엔드 개발자",
       "엄성준",
