@@ -1,12 +1,12 @@
 "use client";
 
-import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCards } from "swiper/modules";
 import Image from "next/image";
 
 /* swiper css */
 import "swiper/css";
 import "swiper/css/effect-cards";
+import { EffectCards } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 /* Swiper의 loop 모드를 사용하려면 최소 5장 이상의 이미지가 필요 */
 const googleImgId = [

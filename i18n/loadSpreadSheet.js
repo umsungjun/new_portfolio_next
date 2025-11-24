@@ -1,8 +1,9 @@
 import fs from "fs";
+import { JWT } from "google-auth-library";
+import { GoogleSpreadsheet } from "google-spreadsheet";
 import path from "path";
 import { fileURLToPath } from "url";
-import { GoogleSpreadsheet } from "google-spreadsheet";
-import { JWT } from "google-auth-library";
+
 import { credentials } from "./credentials.js";
 
 const GOOGLE_SPREADSHEET_DOC_ID =

@@ -1,4 +1,5 @@
 import { LOCALE_KO } from "@/lib/client/constants";
+
 import { Question as QuestionType } from "@prisma/client";
 
 interface QuestionProps {

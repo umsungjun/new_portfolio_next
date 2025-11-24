@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
+
 import { useTranslations } from "next-intl";
-import PulseLoader from "react-spinners/PulseLoader";
-import YoutubePlayer from "react-player";
-import { Answer as AnswerType } from "@prisma/client";
+import Image from "next/image";
+
 import { LOCALE_KO } from "@/lib/client/constants";
 
+import YoutubePlayer from "react-player";
+import PulseLoader from "react-spinners/PulseLoader";
+
 import { PhotoIcon, VideoCameraIcon } from "@heroicons/react/24/solid";
-import Image from "next/image";
+import { Answer as AnswerType } from "@prisma/client";
 
 interface AnswerProps {
   isRefresh: boolean;
