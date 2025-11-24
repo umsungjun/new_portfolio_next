@@ -1,9 +1,13 @@
 import { useState } from "react";
-import useSWR from "swr";
+
 import { useLocale, useTranslations } from "next-intl";
-import { Answer, Question } from "@prisma/client";
+
 import { LOCALE_KO } from "@/lib/client/constants";
 import { useChatStore } from "@/store/useChatStore";
+
+import useSWR from "swr";
+
+import { Answer, Question } from "@prisma/client";
 
 interface QuestionResponse {
   success: boolean;

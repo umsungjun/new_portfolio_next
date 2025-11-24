@@ -1,7 +1,8 @@
 "use client";
 
-import { useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { useParams } from "next/navigation";
+
 import { Link } from "@/i18n/routing";
 import { LOCALE_EN, LOCALE_KO } from "@/lib/client/constants";
 

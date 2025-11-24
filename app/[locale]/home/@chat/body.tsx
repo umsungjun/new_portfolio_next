@@ -1,14 +1,17 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { useLocale } from "next-intl";
-import { useChatStore } from "@/store/useChatStore";
-import { Answer as AnswerType, Question as QuestionType } from "@prisma/client";
-import { CHAT_TYPE_ANSWER, CHAT_TYPE_QUESTION } from "./_lib/constants";
 
-import Question from "./_component/question";
+import { useLocale } from "next-intl";
+
+import { useChatStore } from "@/store/useChatStore";
+
+import { Answer as AnswerType, Question as QuestionType } from "@prisma/client";
+
 import Answer from "./_component/answer";
+import Question from "./_component/question";
 import SelectQuestion from "./_component/selectQuestion";
+import { CHAT_TYPE_ANSWER, CHAT_TYPE_QUESTION } from "./_lib/constants";
 
 export default function ChatBody() {
   /* 현재 설정 된 언어 값 */

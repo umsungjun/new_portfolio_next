@@ -1,7 +1,8 @@
-import { Answer, Question } from "@prisma/client";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { createJSONStorage } from "zustand/middleware";
+
+import { Answer, Question } from "@prisma/client";
 
 type Chat = Question | Answer;
 
