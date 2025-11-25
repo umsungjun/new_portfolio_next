@@ -26,11 +26,11 @@ export const middleware = async (request: NextRequest) => {
 };
 
 export const config = {
-  /* middleware를 실행시킬 페이지 
-    "/" 꼭 붙여야 함
-    /user/:path* <- user path로 시작하는 곳에 전부 적용
-    matcher: ["/", "/profile", "/create-account", "/user/:path*"]
+  /* 정규식 설명:
+    - / : 루트 경로부터 시작
+    - (?! ... ) : negative lookahead - 괄호 안의 패턴과 일치하지 않는 경우만 선택
   */
-
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+  matcher: [
+    "/((?!api|_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml).*)",
+  ],
 };
