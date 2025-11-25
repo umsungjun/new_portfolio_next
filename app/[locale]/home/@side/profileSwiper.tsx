@@ -13,9 +13,6 @@ const googleImgId = [
   "1mHmEA6_u4HVNLZE-P8SeiyJUOw4VWY6P",
   "1mqLoHWEo5l-xD8fNnn6BXhM-SpX13sG4",
   "1pND2J6AogJTsuOR6L3PGMlTaM5Ck6TVF",
-  "1mHmEA6_u4HVNLZE-P8SeiyJUOw4VWY6P",
-  "1mqLoHWEo5l-xD8fNnn6BXhM-SpX13sG4",
-  "1pND2J6AogJTsuOR6L3PGMlTaM5Ck6TVF",
 ];
 
 export default function ProfileSwiper() {
@@ -24,7 +21,7 @@ export default function ProfileSwiper() {
       effect={"cards"}
       modules={[EffectCards]}
       className="w-[215px] h-[286px]"
-      loop={true}
+      loop={false}
       /* 커서 끌기 여부 */
       grabCursor={true}
       /* 클릭 슬라이드 이동 여부 */
