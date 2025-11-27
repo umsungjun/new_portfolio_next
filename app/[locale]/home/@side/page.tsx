@@ -7,8 +7,7 @@ import { DevicePhoneMobileIcon } from "@heroicons/react/24/outline";
 import { EnvelopeIcon } from "@heroicons/react/24/outline";
 
 import ContactInfo from "./_components/contactInfo";
-
-import ProfileSwiper from "./profileSwiper";
+import ProfileSwiper from "./_components/profileSwiper";
 
 interface SideProps {
   params: {
