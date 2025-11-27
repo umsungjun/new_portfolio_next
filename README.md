@@ -39,12 +39,11 @@ Next.js(15.1.4), TypeScript, Tailwind CSS, Zustand, next-intl, Prisma, Supabase
 ### 폴더 구조
 
 ```
-new_portfolio_next
 ├─ app
 │  ├─ [locale]
 │  │  ├─ home
 │  │  │  ├─ @chat
-│  │  │  │  ├─ _component
+│  │  │  │  ├─ _components
 │  │  │  │  │  ├─ answer.tsx
 │  │  │  │  │  ├─ question.tsx
 │  │  │  │  │  └─ selectQuestion.tsx
@@ -54,8 +53,10 @@ new_portfolio_next
 │  │  │  │  ├─ header.tsx
 │  │  │  │  └─ page.tsx
 │  │  │  ├─ @side
-│  │  │  │  ├─ page.tsx
-│  │  │  │  └─ profileSwiper.tsx
+│  │  │  │  ├─ _components
+│  │  │  │  │  ├─ contactInfo.tsx
+│  │  │  │  │  └─ profileSwiper.tsx
+│  │  │  │  └─ page.tsx
 │  │  │  └─ layout.tsx
 │  │  └─ layout.tsx
 │  ├─ api
@@ -67,7 +68,6 @@ new_portfolio_next
 ├─ components
 │  └─ swrProvider.tsx
 ├─ i18n
-│  ├─ credentials.js
 │  ├─ loadSpreadSheet.js
 │  ├─ request.ts
 │  └─ routing.ts
@@ -82,10 +82,14 @@ new_portfolio_next
 │  └─ ko.json
 ├─ middleware.ts
 ├─ package.json
+├─ postcss.config.mjs
 ├─ prisma
+│  ├─ migrations
+│  │  └─ migration_lock.toml
 │  └─ schema.prisma
 ├─ public
-│  └─ favicon.ico
+│  ├─ favicon.ico
+│  └─ robots.txt
 ├─ store
 │  └─ useChatStore.ts
 ├─ tailwind.config.ts

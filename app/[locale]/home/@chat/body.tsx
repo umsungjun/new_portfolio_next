@@ -8,9 +8,9 @@ import { useChatStore } from "@/store/useChatStore";
 
 import { Answer as AnswerType, Question as QuestionType } from "@prisma/client";
 
-import Answer from "./_component/answer";
-import Question from "./_component/question";
-import SelectQuestion from "./_component/selectQuestion";
+import Answer from "./_components/answer";
+import Question from "./_components/question";
+import SelectQuestion from "./_components/selectQuestion";
 import { CHAT_TYPE_ANSWER, CHAT_TYPE_QUESTION } from "./_lib/constants";
 
 export default function ChatBody() {
