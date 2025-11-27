@@ -13,6 +13,13 @@ import Question from "./_components/question";
 import SelectQuestion from "./_components/selectQuestion";
 import { CHAT_TYPE_ANSWER, CHAT_TYPE_QUESTION } from "./_lib/constants";
 
+/**
+ * Render the chat body with message history and a question selection list.
+ *
+ * Renders each item from the chat history as a Question or Answer component based on its `type`, provides the current `locale` to child components, and exposes a transient `isRefresh` flag that becomes false after one second. Questions with `id === 999` hide their marker. Appends a SelectQuestion component populated with the IDs of shown questions.
+ *
+ * @returns The container element that displays the conversation messages and the question selector.
+ */
 export default function ChatBody() {
   /* 현재 설정 된 언어 값 */
   const locale = useLocale();

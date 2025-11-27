@@ -15,6 +15,12 @@ interface SideProps {
   };
 }
 
+/**
+ * Render the left-side portfolio sidebar with localized title, introduction, contact info, profile swiper, and external links.
+ *
+ * @param params - Route parameters containing `locale`, which is used to load translations for the sidebar content
+ * @returns The JSX element representing the portfolio sidebar column
+ */
 export default async function Side({ params }: SideProps) {
   const { locale } = await params;
   const t = await getTranslations({ locale });

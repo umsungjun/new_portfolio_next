@@ -10,6 +10,15 @@ interface ContactInfoProps {
   type: "phone" | "email";
 }
 
+/**
+ * Renders a button that reveals masked contact information on first click and copies the full value on subsequent clicks.
+ *
+ * When revealed, the value is shown in monospace and a clipboard icon appears; after a successful copy the icon changes to a check for 2 seconds.
+ *
+ * @param value - The contact string to display (phone number or email).
+ * @param type - "phone" to mask a hyphenated phone number's middle segment, "email" to mask an email's local part.
+ * @returns The button element that displays, reveals, and copies the contact information.
+ */
 export default function ContactInfo({ value, type }: ContactInfoProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
