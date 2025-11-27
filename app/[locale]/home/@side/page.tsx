@@ -6,6 +6,8 @@ import { localeType } from "@/lib/client/type";
 import { DevicePhoneMobileIcon } from "@heroicons/react/24/outline";
 import { EnvelopeIcon } from "@heroicons/react/24/outline";
 
+import ContactInfo from "./_components/contactInfo";
+
 import ProfileSwiper from "./profileSwiper";
 
 interface SideProps {
@@ -41,16 +43,20 @@ export default async function Side({ params }: SideProps) {
                   <DevicePhoneMobileIcon className="size-6" />
                   <h5 className="text-xl">{t("phone")}</h5>
                 </div>
-                <p className="mt-2 text-lg">
-                  {process.env.NEXT_PUBLIC_PHONE_NUMBER}
-                </p>
+                <ContactInfo
+                  value={process.env.NEXT_PUBLIC_PHONE_NUMBER || ""}
+                  type="phone"
+                />
               </li>
               <li>
                 <div className="flex items-center gap-1.5">
                   <EnvelopeIcon className="size-6" />
                   <h5 className="text-xl">{t("mail")}</h5>
                 </div>
-                <p className="mt-2 text-lg">{process.env.NEXT_PUBLIC_MAIL}</p>
+                <ContactInfo
+                  value={process.env.NEXT_PUBLIC_MAIL || ""}
+                  type="email"
+                />
               </li>
             </ul>
           </div>
