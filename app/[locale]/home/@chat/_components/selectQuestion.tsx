@@ -70,7 +70,7 @@ export default function SelectQuestion({
     <div className="questionWrapper">
       <div className="questionButtonBox">
         <span>{t("chatSelectQuestion")}</span>
-        {!isLoading ? (
+        {isLoading ? (
           Array.from({ length: 8 }).map((_, index) => (
             <button key={index} className="questionButtonSkeleton" />
           ))
