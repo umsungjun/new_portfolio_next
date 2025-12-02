@@ -167,11 +167,18 @@ table {
     display: none;
   }
 }
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
 
 /* 질문 CSS */
 .questionWrapper {
   @apply w-11/12 flex flex-col gap-3 web:w-4/5;
-  animation: slideDown 0.85s ease-in-out forwards;
 }
 .questionMark {
   @apply w-8 h-8 flex items-center justify-center rounded-full bg-blue-500 text-white font-black;
@@ -188,6 +195,13 @@ table {
 }
 .questionButtonBox button {
   @apply h-12 border border-solid border-gray-400 rounded-xl shadow-sm hover:shadow-md transition-all ease-in-out;
+}
+
+/* 질문 버튼 스켈레톤 UI */
+.questionButtonBox button.questionButtonSkeleton {
+  @apply h-12 border-none rounded-xl relative overflow-hidden bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200;
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
 }
 
 .answerLoader {
