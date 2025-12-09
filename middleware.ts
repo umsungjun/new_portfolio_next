@@ -2,28 +2,35 @@ import createMiddleware from "next-intl/middleware";
 import { NextRequest, NextResponse } from "next/server";
 
 import { routing } from "./i18n/routing";
-import {
-  LOCALE_EN,
-  LOCALE_KO,
-  SUPPORTED_LOCALES,
-} from "./lib/client/constants";
+import { LOCALE_EN, LOCALE_KO } from "./lib/client/constants";
 
-export default createMiddleware(routing);
+const intlMiddleware = createMiddleware(routing);
 
-export const middleware = async (request: NextRequest) => {
+export default async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
-  const locale = pathname.split("/")[1];
 
-  if (pathname === `/${LOCALE_KO}` || pathname === `/${LOCALE_EN}`) {
-    const newUrl = new URL(`${pathname}/home`, request.url);
-    return NextResponse.redirect(newUrl);
-  }
+  // 루트 경로나 locale만 있는 경우 /home으로 리다이렉트
+  if (
+    pathname === "/" ||
+    pathname === `/${LOCALE_KO}` ||
+    pathname === `/${LOCALE_EN}`
+  ) {
+    // locale 추출
+    let locale = LOCALE_KO;
+    if (pathname === `/${LOCALE_EN}`) {
+      locale = LOCALE_EN;
+    } else if (pathname === `/${LOCALE_KO}`) {
+      locale = LOCALE_KO;
+    }
 
-  if (!SUPPORTED_LOCALES.includes(locale)) {
-    const url = new URL(`/${LOCALE_KO}/home`, request.url);
+    // 직접 리다이렉트 반환
+    const url = new URL(`/${locale}/home`, request.url);
     return NextResponse.redirect(url);
   }
-};
+
+  // 나머지는 next-intl middleware에게 위임
+  return intlMiddleware(request);
+}
 
 export const config = {
   /* 정규식 설명:
