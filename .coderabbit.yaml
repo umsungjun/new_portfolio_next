@@ -5,16 +5,16 @@ reviews:
   review_depth: medium
 
   path_filters:
-    include:
-      - "app/**/*.{ts,tsx}"
-      - "components/**/*.{ts,tsx}"
-      - "lib/**/*.{ts,tsx}"
-      - "store/**/*.{ts,tsx}"
-    exclude:
-      - "node_modules/**"
-      - ".next/**"
-      - "public/**"
-      - "pnpm-lock.yaml"
+    - include:
+        - "app/**/*.{ts,tsx}"
+        - "components/**/*.{ts,tsx}"
+        - "lib/**/*.{ts,tsx}"
+        - "store/**/*.{ts,tsx}"
+      exclude:
+        - "node_modules/**"
+        - ".next/**"
+        - "public/**"
+        - "pnpm-lock.yaml"
 
   focus_areas:
     - performance
