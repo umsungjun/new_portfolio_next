@@ -1,0 +1,18 @@
+language: ko
+
+reviews:
+  auto_review:
+    enabled: true
+  profile: chill
+
+  path_filters:
+    - "app/**/*.{ts,tsx}"
+    - "components/**/*.{ts,tsx}"
+    - "lib/**/*.{ts,tsx}"
+    - "store/**/*.{ts,tsx}"
+    - "!node_modules/**"
+    - "!.next/**"
+    - "!public/**"
+    - "!pnpm-lock.yaml"
+
+tone_instructions: friendly
