@@ -1,32 +1,18 @@
 language: ko
 
 reviews:
-  auto_review: true
-  review_depth: medium
+  auto_review:
+    enabled: true
+  profile: chill
 
   path_filters:
-    - include:
-        - "app/**/*.{ts,tsx}"
-        - "components/**/*.{ts,tsx}"
-        - "lib/**/*.{ts,tsx}"
-        - "store/**/*.{ts,tsx}"
-      exclude:
-        - "node_modules/**"
-        - ".next/**"
-        - "public/**"
-        - "pnpm-lock.yaml"
+    - "app/**/*.{ts,tsx}"
+    - "components/**/*.{ts,tsx}"
+    - "lib/**/*.{ts,tsx}"
+    - "store/**/*.{ts,tsx}"
+    - "!node_modules/**"
+    - "!.next/**"
+    - "!public/**"
+    - "!pnpm-lock.yaml"
 
-  focus_areas:
-    - performance
-    - accessibility
-    - type-safety
-    - react-best-practices
-    - nextjs-best-practices
-
-tone: friendly
-
-tests:
-  required: false
-
-security:
-  enabled: true
+tone_instructions: friendly
