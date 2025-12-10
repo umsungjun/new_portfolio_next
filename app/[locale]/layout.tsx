@@ -56,6 +56,8 @@ export default async function LocaleLayout({
   /* locale을 인자로 전달해야 정상적으로 언어가 변경 됨 */
   const messages = await getMessages({ locale });
 
+  console.log("CodeRabbit 테스트");
+
   return (
     <html lang={locale}>
       <body>
