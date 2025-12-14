@@ -3,9 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL") // Supabase 연결
-  directUrl = env("DIRECT_URL")
+  provider = "postgresql"
 }
 
 enum Type {
