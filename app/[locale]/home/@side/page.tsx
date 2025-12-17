@@ -105,7 +105,7 @@ export default async function Side({ params }: SideProps) {
             </a>
             <a
               className="w-28 h-full rounded-lg flex items-center gap-2"
-              href="www.linkedin.com/in/frontend-developer-umsungjun"
+              href="https://www.linkedin.com/in/frontend-developer-umsungjun"
               target="_blank"
               rel="noopener noreferrer"
             >
