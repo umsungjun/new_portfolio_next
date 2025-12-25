@@ -49,7 +49,7 @@ export default async function LocaleLayout({
   params,
 }: Readonly<{
   children: React.ReactNode;
-  params: LocaleLayoutParams;
+  params: Promise<LocaleLayoutParams>;
 }>) {
   const { locale } = await params;
 
