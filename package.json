@@ -11,6 +11,7 @@
     "prettier": "prettier --write ."
   },
   "dependencies": {
+    "@channel.io/channel-web-sdk-loader": "^2.0.2",
     "@heroicons/react": "^2.2.0",
     "@prisma/adapter-pg": "^7.1.0",
     "@prisma/client": "7.1.0",

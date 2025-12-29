@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@channel.io/channel-web-sdk-loader':
+        specifier: ^2.0.2
+        version: 2.0.2
       '@heroicons/react':
         specifier: ^2.2.0
         version: 2.2.0(react@19.0.0)
@@ -136,6 +139,9 @@ packages:
   '@babel/types@7.28.5':
     resolution: {integrity: sha512-qQ5m48eI/MFLQ5PxQj4PFaprjyCTLI37ElWMmNs0K8Lk3dVeOdNpB3ks8jc7yM5CDmVC73eMVk/trk3fgmrUpA==}
     engines: {node: '>=6.9.0'}
+
+  '@channel.io/channel-web-sdk-loader@2.0.2':
+    resolution: {integrity: sha512-43xRJX+BUjb5vRw5A/LDkgE9syJYTPERf7xo49Fz5MMpA9UtzPWHWyzN2QU1/tTT2uu5tpxapT2BgMx6FfP2qg==}
 
   '@chevrotain/cst-dts-gen@10.5.0':
     resolution: {integrity: sha512-lhmC/FyqQ2o7pGK4Om+hzuDrm9rhFYIJ/AXoQBeongmn870Xeb0L6oGEiuR8nohFNL5sMaQEJWCxr1oIVIVXrw==}
@@ -2468,6 +2474,8 @@ snapshots:
     dependencies:
       '@babel/helper-string-parser': 7.27.1
       '@babel/helper-validator-identifier': 7.28.5
+
+  '@channel.io/channel-web-sdk-loader@2.0.2': {}
 
   '@chevrotain/cst-dts-gen@10.5.0':
     dependencies:

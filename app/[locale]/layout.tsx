@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 
+import { ChannelTalk } from "@/components/channelTalk";
 import { SwrProviders } from "@/components/swrProvider";
 import { LOCALE_KO } from "@/lib/client/constants";
 import { localeType } from "@/lib/client/type";
@@ -65,6 +66,7 @@ export default async function LocaleLayout({
           </NextIntlClientProvider>
         </SwrProviders>
       </body>
+      <ChannelTalk />
     </html>
   );
 }
