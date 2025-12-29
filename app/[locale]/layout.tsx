@@ -65,8 +65,8 @@ export default async function LocaleLayout({
             {children}
           </NextIntlClientProvider>
         </SwrProviders>
+        <ChannelTalk />
       </body>
-      <ChannelTalk />
     </html>
   );
 }
