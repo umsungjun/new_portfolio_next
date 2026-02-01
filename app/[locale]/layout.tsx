@@ -36,11 +36,26 @@ export async function generateMetadata({
       "umsungjun",
       "portfolio",
     ],
-    icons: {
-      icon: "/favicon.ico",
-    },
-    verification: {
-      google: "FkVxpqkKnBQlSm1tgTF-GyQP0GLfhX_z03E6h21lipo",
+    openGraph: {
+      title:
+        locale === LOCALE_KO
+          ? "프론트엔드 개발자 엄성준 Next 포트폴리오"
+          : "Frontend Developer Sungjun Um Next Portfolio",
+      description:
+        locale === LOCALE_KO
+          ? "꾸준함이 강점이자 자랑인 프론트엔드 개발자 엄성준 Next 포트폴리오입니다."
+          : "This is the Next portfolio of Frontend Developer Sungjun Um, whose strength and pride is consistency.",
+      url: "https://next-umsungjun.vercel.app/",
+      siteName:
+        locale === LOCALE_KO
+          ? "프론트엔드 개발자 엄성준 Next 포트폴리오"
+          : "Frontend Developer Sungjun Um Next Portfolio",
+      images: [
+        {
+          url: "/favicon.ico",
+        },
+      ],
+      type: "website",
     },
   };
 }
