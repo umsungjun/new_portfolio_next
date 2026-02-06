@@ -39,22 +39,26 @@ export default function SelectQuestion({
 
   const getAnswer = async (question: Question) => {
     setIsAnswering(true);
-    const response = await fetch(`/api/answer`, {
-      method: "POST",
-      body: JSON.stringify({ id: question.id }),
-      headers: { "Content-Type": "application/json" },
-    });
-
-    const data = await response.json();
-
-    if (data.success) {
-      /* 질문 추가 */
-      setChatHistory(question);
-      /* 답변 추가 */
-      data.data.forEach((answer: Answer) => {
-        setChatHistory(answer);
+    try {
+      const response = await fetch(`/api/answer`, {
+        method: "POST",
+        body: JSON.stringify({ id: question.id }),
+        headers: { "Content-Type": "application/json" },
       });
 
+      const data = await response.json();
+
+      if (data.success) {
+        /* 질문 추가 */
+        setChatHistory(question);
+        /* 답변 추가 */
+        data.data.forEach((answer: Answer) => {
+          setChatHistory(answer);
+        });
+      }
+    } catch (error) {
+      console.error("답변을 불러오는 중 오류가 발생했습니다.", error);
+    } finally {
       setIsAnswering(false);
     }
   };
