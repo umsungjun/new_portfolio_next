@@ -29,7 +29,7 @@ export default async function Side({ params }: SideProps) {
           </h1>
           <div className="flex flex-col gap-2">
             <h3 className="text-2xl">&ldquo;{t("introduce1")}</h3>
-            <h3 className="text-2xl text-right">{t("introduce2")}&ldquo;</h3>
+            <h3 className="text-2xl text-right">{t("introduce2")}&rdquo;</h3>
           </div>
         </div>
         {/* 연락처 */}
