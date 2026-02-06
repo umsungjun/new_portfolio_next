@@ -127,15 +127,8 @@ table {
   border-spacing: 0;
 }
 
-@font-face {
-  font-family: "NanumSquareNeo";
-  src: url(https://hangeul.pstatic.net/hangeul_static/webfont/NanumSquareNeo/NanumSquareNeoTTF-bRg.eot);
-  font-weight: 400;
-  font-display: swap;
-}
-
-* {
-  font-family: "NanumSquareNeo" !important;
+body {
+  font-family: "Pretendard Variable", Pretendard, sans-serif;
 }
 
 @keyframes slideDown {
