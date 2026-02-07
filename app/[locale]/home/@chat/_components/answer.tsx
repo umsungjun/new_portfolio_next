@@ -61,7 +61,6 @@ export default function Answer({ isRefresh, locale, chat }: AnswerProps) {
                   className="object-contain p-1"
                   fill
                   src={`${process.env.NEXT_PUBLIC_GOOGLE_DRIVE_IMG_URL}${chat.mediaUrl}&sz=w300`}
-                  priority={true}
                   alt="referenceImage"
                   sizes="(max-width: 215px) 100vw"
                 />
