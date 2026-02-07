@@ -20,6 +20,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   return {
+    metadataBase: new URL("https://next-umsungjun.vercel.app"),
     title:
       locale === LOCALE_KO
         ? "프론트엔드 개발자 엄성준 Next 포트폴리오"
