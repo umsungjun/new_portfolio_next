@@ -1,76 +1,76 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+이 파일은 Claude Code(claude.ai/code)가 이 저장소의 코드를 다룰 때 참고하는 가이드입니다.
 
-## Project Overview
+## 프로젝트 개요
 
-Next.js 15 full-stack portfolio application (migrated from React). Chat-style UI where users select predefined questions and receive animated answers with optional media. Deployed on Vercel at https://next-umsungjun.vercel.app/.
+Next.js 15 풀스택 포트폴리오 애플리케이션 (React에서 마이그레이션). 사용자가 미리 정의된 질문을 선택하면 애니메이션과 함께 답변(선택적 미디어 포함)이 표시되는 채팅 스타일 UI. Vercel에 배포: https://next-umsungjun.vercel.app/
 
-## Commands
+## 명령어
 
-- `npm run dev` — Dev server with Turbopack
-- `npm run build` — Generates Prisma client then builds (`prisma generate && next build`)
-- `npm run lint` — ESLint
-- `npm run prettier` — Format all files with Prettier
-- `npm run download:i18n` — Sync translations from Google Sheets to `messages/` directory
+- `npm run dev` — Turbopack 개발 서버
+- `npm run build` — Prisma 클라이언트 생성 후 빌드 (`prisma generate && next build`)
+- `npm run lint` — ESLint 실행
+- `npm run prettier` — Prettier로 전체 파일 포맷팅
+- `npm run download:i18n` — Google Sheets에서 번역 파일을 `messages/` 디렉토리로 동기화
 
-## Tech Stack
+## 기술 스택
 
-- **Framework:** Next.js 15, React 19, TypeScript (strict mode)
-- **Styling:** Tailwind CSS 3 (custom breakpoint `web: 1055px`)
-- **State:** Zustand with sessionStorage persistence
-- **Data Fetching:** SWR (client), Prisma 7 with PostgreSQL/Supabase (server)
-- **i18n:** next-intl — Korean (default) and English, locale prefix always present in URL
-- **Font:** Pretendard Variable (loaded via CDN in layout)
+- **프레임워크:** Next.js 15, React 19, TypeScript (strict 모드)
+- **스타일링:** Tailwind CSS 3 (커스텀 브레이크포인트 `web: 1055px`)
+- **상태 관리:** Zustand + sessionStorage 영속성
+- **데이터 페칭:** SWR (클라이언트), Prisma 7 + PostgreSQL/Supabase (서버)
+- **i18n:** next-intl — 한국어(기본) 및 영어, URL에 항상 locale 접두사 포함
+- **폰트:** Pretendard Variable (layout에서 CDN으로 로드)
 
-## Architecture
+## 아키텍처
 
-### Routing & Rendering
+### 라우팅 & 렌더링
 
-All pages are under `app/[locale]/`. Middleware (`middleware.ts`) redirects `/` and bare locale paths to `/[locale]/home`.
+모든 페이지는 `app/[locale]/` 하위에 위치. 미들웨어(`middleware.ts`)가 `/` 및 locale만 있는 경로를 `/[locale]/home`으로 리다이렉트.
 
-The home page uses **Next.js parallel routes**:
-- `@chat/` — Client-side rendered chat interface (475px fixed width)
-- `@side/` — Server-side rendered profile/contact section (hidden below 1055px)
+홈 페이지는 **Next.js 병렬 라우트** 사용:
+- `@chat/` — 클라이언트 사이드 렌더링 채팅 인터페이스 (475px 고정 너비)
+- `@side/` — 서버 사이드 렌더링 프로필/연락처 섹션 (1055px 미만에서 숨김)
 
-### API Routes
+### API 라우트
 
-- `GET /api/question` — Returns all questions ordered by ID
-- `POST /api/answer` — Accepts `{ id: number }`, returns answers for that question
+- `GET /api/question` — ID 순으로 정렬된 전체 질문 반환
+- `POST /api/answer` — `{ id: number }`를 받아 해당 질문의 답변 반환
 
-Both return `{ success: boolean, data: T[] }` shape.
+둘 다 `{ success: boolean, data: T[] }` 형태로 응답.
 
-### Database (Prisma + Supabase PostgreSQL)
+### 데이터베이스 (Prisma + Supabase PostgreSQL)
 
-Schema in `prisma/schema.prisma`: `Question` → has many `Answer` (cascade delete). Answers can have optional `mediaUrl` (Google Drive file ID) and `mediaType` (IMAGE | VIDEO).
+스키마: `prisma/schema.prisma` — `Question` → 다수의 `Answer` 보유 (cascade 삭제). Answer는 선택적으로 `mediaUrl`(Google Drive 파일 ID)과 `mediaType`(IMAGE | VIDEO)을 가질 수 있음.
 
-Prisma client uses a **singleton pattern** in `lib/server/prisma.ts` to prevent connection accumulation during dev hot reload. Uses `@prisma/adapter-pg` for connection pooling via Supabase pgBouncer.
+Prisma 클라이언트는 `lib/server/prisma.ts`에서 **싱글톤 패턴**을 사용하여 개발 핫 리로드 시 커넥션 누적 방지. Supabase pgBouncer를 통한 커넥션 풀링에 `@prisma/adapter-pg` 사용.
 
-### Chat Flow
+### 채팅 흐름
 
-1. `SelectQuestion` fetches questions via SWR, filters out already-asked ones
-2. User clicks a question → it's added to Zustand store → POST `/api/answer` fetches answers
-3. Answers render with a 1s loading animation, then display text + optional media
-4. Chat history lives in Zustand store backed by sessionStorage (resets per session)
+1. `SelectQuestion`이 SWR로 질문을 가져오고, 이미 질문한 항목을 필터링
+2. 사용자가 질문 클릭 → Zustand 스토어에 추가 → POST `/api/answer`로 답변 페칭
+3. 답변은 1초 로딩 애니메이션 후 텍스트 + 선택적 미디어 표시
+4. 채팅 기록은 sessionStorage 기반 Zustand 스토어에 저장 (세션마다 초기화)
 
 ### i18n
 
-- Routing config: `i18n/routing.ts` — exports wrapped Next.js navigation APIs (Link, redirect, usePathname, useRouter)
-- Server request config: `i18n/request.ts`
-- Translation files: `messages/ko.json`, `messages/en.json`
-- DB content is bilingual: `contentKo` / `contentEn` fields, selected by locale in components
+- 라우팅 설정: `i18n/routing.ts` — 래핑된 Next.js 네비게이션 API 내보냄 (Link, redirect, usePathname, useRouter)
+- 서버 요청 설정: `i18n/request.ts`
+- 번역 파일: `messages/ko.json`, `messages/en.json`
+- DB 콘텐츠는 이중 언어: `contentKo` / `contentEn` 필드, 컴포넌트에서 locale에 따라 선택
 
-### Environment Variables
+### 환경 변수
 
-Client (`NEXT_PUBLIC_`): `PHONE_NUMBER`, `MAIL`, `GOOGLE_DRIVE_IMG_URL`, `CHANNEL_PLUGIN_KEY`
-Server: `DATABASE_URL` (pooled), `DIRECT_URL` (migrations)
+클라이언트 (`NEXT_PUBLIC_`): `PHONE_NUMBER`, `MAIL`, `GOOGLE_DRIVE_IMG_URL`, `CHANNEL_PLUGIN_KEY`
+서버: `DATABASE_URL` (풀링), `DIRECT_URL` (마이그레이션)
 
-## Commit Convention
+## 커밋 컨벤션
 
-Korean commit messages with prefixes: `Feat`, `Fix`, `Docs`, `Style`, `Refactor`, `Test`, `Chore`, `Design`, `Rename`, `Remove`
+한국어 커밋 메시지, 접두사: `Feat`, `Fix`, `Docs`, `Style`, `Refactor`, `Test`, `Chore`, `Design`, `Rename`, `Remove`
 
-## Code Style
+## 코드 스타일
 
-- Prettier: double quotes, 2-space indent, trailing comma ES5
-- Import order enforced by `@trivago/prettier-plugin-sort-imports`: CSS → React → Next → `@/` aliases → node_modules → relative
-- Path alias: `@/*` maps to project root
+- Prettier: 큰따옴표, 2칸 들여쓰기, trailing comma ES5
+- `@trivago/prettier-plugin-sort-imports`로 import 순서 강제: CSS → React → Next → `@/` 별칭 → node_modules → 상대 경로
+- 경로 별칭: `@/*`는 프로젝트 루트에 매핑
